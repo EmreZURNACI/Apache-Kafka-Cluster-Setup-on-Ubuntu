@@ -44,7 +44,7 @@ The instructions can be applied to a single machine for testing or scaled across
 7. Instead of manually starting and stopping Zookeeper with `./bin/zookeeper-server-start.sh` every time, create a **systemd service** to manage it.: 
 
     ```bash
-        vim /etc/systemd/system/zookeeper.service
+        sudo vim /etc/systemd/system/zookeeper.service
     ```
 
     ```bash
@@ -67,7 +67,7 @@ The instructions can be applied to a single machine for testing or scaled across
 8.  In the same directory, create a **systemd service** for the Kafka broker as well.
 
     ```bash
-        vim /etc/systemd/system/kafka.service
+        sudo vim /etc/systemd/system/kafka.service
     ```
 
     ```bash
@@ -127,7 +127,7 @@ The instructions can be applied to a single machine for testing or scaled across
 
 13. Configure Zookeeper in the `zookeeper.properties` file:
 
-    I.  Open the configuration file:
+    I.	Open the configuration file:
 
     ```bash
        vim /home/ubuntu/kafka/config/zookeeper.properties
@@ -138,10 +138,17 @@ The instructions can be applied to a single machine for testing or scaled across
     ```bash
        dataDir=/data/zookeeper
     ```
+	
+    III.  Set additional Zookeeper limits required for cluster stability: 
+	
+	```bash
+		initLimit=5
+		syncLimit=2
+	```
 
-    III.  Add all Zookeeper nodes at the end of the file in the format `server.X=[hostname]:2888:3888` :
-
-    ```bash
+	IV.  Add all Zookeeper nodes at the end of the file in the format `server.X=[hostname]:2888:3888` :
+	
+	```bash
         server.1=machine1.example.com:2888:3888
         server.2=machine2.example.com:2888:3888
         server.3=machine3.example.com:2888:3888
@@ -174,7 +181,7 @@ The instructions can be applied to a single machine for testing or scaled across
         log.dirs=/data/kafka
     ```
 
-    V.  Add all Zookeeper nodes at the end of the file and connect the broker to all Zookeeper nodes:
+    V.  Connect the broker to all Zookeeper nodes:
 
     ```bash
         zookeeper.connect=machine1.example.com:2181,machine2.example.com:2181,machine3.example.com:2181
