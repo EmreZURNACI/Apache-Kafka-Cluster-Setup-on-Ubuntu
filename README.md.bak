@@ -93,7 +93,7 @@ The instructions can be applied to a single machine for testing or scaled across
         sudo systemctl daemon-reload
     ```
 
-10. Set the services to start automatically on every machine boot and start them:
+10.  Set the services to start automatically on every machine boot and start them:
 
     ```bash
         sudo systemctl enable zookeeper
