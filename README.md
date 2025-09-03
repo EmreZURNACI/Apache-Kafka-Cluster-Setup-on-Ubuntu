@@ -193,3 +193,13 @@ The instructions can be applied to a single machine for testing or scaled across
         sudo systemctl restart zookeeper
         sudo systemctl restart kafka
     ```
+	
+	
+⚠️ **Warning / Tip:**  
+If any Kafka broker encounters issues, you can reset its metadata by deleting the contents of the log directory and restarting the broker:
+
+```bash
+sudo rm -rf /data/kafka/*
+sudo systemctl restart kafka
+```
+
