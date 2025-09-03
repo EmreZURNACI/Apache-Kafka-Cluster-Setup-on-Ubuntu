@@ -161,9 +161,10 @@ The instructions can be applied to a single machine for testing or scaled across
        broker.id=1
     ```
 
-    III.  Set the advertised listeners to the machine's own IP address:
+    III.  Set the listeners and advertised listeners to the machine's own IP address:
 
     ```bash
+		listeners=PLAINTEXT://0.0.0.0:9092
         advertised.listeners=PLAINTEXT://machine1.example.com:9092
     ```
 
